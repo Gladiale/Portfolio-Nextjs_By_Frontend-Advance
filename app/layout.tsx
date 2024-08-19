@@ -1,8 +1,18 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
+import type { Metadata } from "next";
+// Font Setup
+import { Sora } from "next/font/google";
+// Components
+import Nav from "@/components/Nav";
+import Header from "@/components/Header";
+import TransitionParent from "@/components/TransitionParent";
 
-const inter = Inter({ subsets: ["latin"] });
+// Font Settings
+const sora = Sora({
+  subsets: ["latin"],
+  variable: "--font-sora",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +26,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body>
+        <div
+          className={`page text-black bg-site bg-cover bg-no-repeat ${sora.variable} font-sora relative`}
+        >
+          <Nav />
+          <Header />
+          <TransitionParent>{children}</TransitionParent>
+        </div>
+      </body>
     </html>
   );
 }
